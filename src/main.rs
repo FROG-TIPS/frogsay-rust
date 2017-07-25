@@ -336,18 +336,10 @@ FROG TIPS ARE FETCHED FROM HTTPS://FROG.TIPS'S API ENDPOINT. IF THE \"ESSENTIAL\
         Selection::Say(pond) => {
             match pond.say() {
                 Err(why) => {
-                    if cfg!(debug_assertions) {
-                        writeln!(io::stderr(), "error: {}", why).unwrap();
-                        for cause in why.iter().skip(1) {
-                            writeln!(io::stderr(), "caused by: {}", cause).unwrap();
-                        }
-                    } else {
-                        // println! will panic if it fails to write to stdout, so do the same here
-                        write!(io::stderr(), "{}", speech::say(format!("error: {}", why).to_uppercase().as_ref())).unwrap();
-                    };
-
+                    // println! will panic if it fails to write to stdout, so do the same here
+                    write!(io::stderr(), "{}", speech::say(format!("error: {}", why).to_uppercase().as_ref())).unwrap();
                     2
-                }
+                },
                 _ => 0,
             }
         }
