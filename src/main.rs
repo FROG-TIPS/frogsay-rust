@@ -29,8 +29,14 @@ extern crate tokio_core;
 mod errors {
     error_chain! {
         errors {
-            CacheInaccessible {
-                description("cache was inaccessible")
+            CachePathNotCreated {
+                description("the path to the cache could not be created")
+            }
+            CacheNotCreated {
+                description("the cache could not be created")
+            }
+            CacheNotUpdated {
+                description("the cache could not be updated")
             }
             NoTips {
                 description("no tips were available")
@@ -220,7 +226,7 @@ mod frogsay {
                             app_dirs::AppDataType::UserCache,
                             &::APP_INFO,
                             "cache",
-                        ).chain_err(|| ErrorKind::CacheInaccessible)?
+                        ).chain_err(|| ErrorKind::CachePathNotCreated)?
                             .join(format!("cache-{}.json", CACHE_VERSION));
 
                         fs::OpenOptions::new()
@@ -228,7 +234,7 @@ mod frogsay {
                             .write(true)
                             .create(true)
                             .open(file)
-                            .chain_err(|| ErrorKind::CacheInaccessible)?
+                            .chain_err(|| ErrorKind::CacheNotCreated)?
                     };
 
                     let json: result::Result<Vec<tips::Tip>, serde_json::Error> =
@@ -251,10 +257,10 @@ mod frogsay {
                     cache
                         .set_len(0)
                         .and_then(|_| cache.seek(SeekFrom::Start(0)))
-                        .chain_err(|| ErrorKind::CacheInaccessible)?;
+                        .chain_err(|| ErrorKind::CacheNotUpdated)?;
 
                     serde_json::to_writer(cache, &tips)
-                        .chain_err(|| ErrorKind::CacheInaccessible)?;
+                        .chain_err(|| ErrorKind::CacheNotUpdated)?;
 
                     Ok(tip)
                 }
@@ -330,12 +336,16 @@ FROG TIPS ARE FETCHED FROM HTTPS://FROG.TIPS'S API ENDPOINT. IF THE \"ESSENTIAL\
         Selection::Say(pond) => {
             match pond.say() {
                 Err(why) => {
-                    // println! will panic if it fails to write to stdout, so do the same here
-                    write!(
-                        io::stderr(),
-                        "{}",
-                        speech::say(format!("error: {}", why).to_uppercase().as_ref())
-                    ).unwrap();
+                    if cfg!(debug_assertions) {
+                        writeln!(io::stderr(), "error: {}", why).unwrap();
+                        for cause in why.iter().skip(1) {
+                            writeln!(io::stderr(), "caused by: {}", cause).unwrap();
+                        }
+                    } else {
+                        // println! will panic if it fails to write to stdout, so do the same here
+                        write!(io::stderr(), "{}", speech::say(format!("error: {}", why).to_uppercase().as_ref())).unwrap();
+                    };
+
                     2
                 }
                 _ => 0,
