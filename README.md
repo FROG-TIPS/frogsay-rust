@@ -10,3 +10,6 @@
  ( >__< )
  ^^ ~~ ^^
 ```
+
+[![Travis build status](https://travis-ci.org/chrlie/frogsay-rust.svg?branch=master)](https://travis-ci.org/chrlie/frogsay-rust)
+[![Appveyor build status](https://ci.appveyor.com/api/projects/status/github/chrlie/frogsay-rust?svg=true)](https://ci.appveyor.com/project/chrlie/frogsay-rust)
