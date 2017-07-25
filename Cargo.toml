@@ -1,0 +1,28 @@
+[package]
+name = "frogsay"
+version = "3.0.0-DEV"
+authors = ["Charlie Liban <charlie@clib.ca>"]
+
+[dependencies]
+getopts = "0.2"
+textwrap = "0.6"
+futures = "0.1"
+hyper = "0.11"
+hyper-tls = "0.1"
+native-tls = "0.1"
+tokio-core = "0.1"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+error-chain = "0.10"
+app_dirs = "1.1"
+rand = "0.3"
+itertools = "0.6.0"
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
