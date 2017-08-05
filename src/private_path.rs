@@ -205,7 +205,7 @@ mod platform {
     }
 }
 
-#[cfg(not(any(windows, unix, target_os="macos",)))]
+#[cfg(not(any(windows, target_os="macos",)))]
 mod platform {
     use std::env;
     use super::errors::*;
