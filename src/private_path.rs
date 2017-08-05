@@ -209,6 +209,7 @@ mod platform {
 #[cfg(not(any(windows, target_os="macos",)))]
 mod platform {
     use std::env;
+    use std::path::PathBuf;
     use super::errors::*;
 
     pub fn home() -> Result<PathBuf> {
