@@ -12,6 +12,7 @@ pub mod errors {
             NoHomeDir {
                 description("no home directory could be found")
             }
+            #[cfg(windows)]
             BadHomeDirEncoding {
                 description("the path to the home directory has an unknown encoding")
             }
