@@ -11,10 +11,10 @@ main() {
         return
     fi
 
-    # The application will try to write to $HOME but since Cross uses Docker,
-    # it can't write outside the target directory
+    # Cross runs inside docker and $HOME should be set to the root of the docker
+    # container.
     if [ $TRAVIS_OS_NAME = linux ]; then
-        export HOME=$HOME/target
+        export HOME=/
     fi
 
     cross test --target $TARGET
