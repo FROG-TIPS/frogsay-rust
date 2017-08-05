@@ -68,6 +68,7 @@ impl PrivatePathBuf {
 #[cfg(target_os="macos")]
 mod platform {
     use std::env;
+    use std::path::PathBuf;
     use super::errors::*;
 
     pub fn home() -> Result<PathBuf> {
