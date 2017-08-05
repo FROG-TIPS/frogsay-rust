@@ -2,9 +2,6 @@
 
 error_chain! {
     errors {
-        CachePathNotCreated {
-            description("the path to the cache could not be created")
-        }
         CacheNotCreated {
             description("the cache could not be created")
         }
@@ -17,5 +14,9 @@ error_chain! {
         NoEssentialTips {
             description("essential tips were not available")
         }
+    }
+
+    links {
+        PrivatePath(::private_path::errors::Error, ::private_path::errors::ErrorKind);
     }
 }

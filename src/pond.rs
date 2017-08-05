@@ -1,5 +1,4 @@
 /// Everything related to the command-line application.
-use app_dirs;
 use errors::*;
 use rand::{self, Rng};
 use reservoir::{self, Reservoir};
@@ -9,9 +8,14 @@ use std::fs;
 use std::io::{Seek, SeekFrom};
 use std::result;
 use tips;
+use private_path;
 
 /// The cache file is versioned for future upgrading and recovery.
 const CACHE_VERSION: &'static str = "1";
+
+const PROGRAM_AUTHOR: &'static str = "FROG SYSTEMS";
+const PROGRAM_NAME: &'static str = env!("CARGO_PKG_NAME");
+
 static ESSENTIAL_JSON: &'static str = include_str!("../txt/essential.json");
 
 pub struct Pond {
@@ -21,17 +25,12 @@ pub struct Pond {
 enum ReservoirMode {
     Cache,
     EssentialCache,
-    NoCache,
 }
 
 impl Pond {
-    pub fn with_cache(cache_enabled: bool) -> Pond {
+    pub fn with_cache() -> Pond {
         Pond {
-            mode: if cache_enabled {
-                ReservoirMode::Cache
-            } else {
-                ReservoirMode::NoCache
-            },
+            mode: ReservoirMode::Cache,
         }
     }
 
@@ -55,18 +54,16 @@ impl reservoir::Reservoir<tips::Tip> for Pond {
         match self.mode {
             ReservoirMode::Cache => {
                 let mut cache = {
-                    let file = app_dirs::app_dir(
-                        app_dirs::AppDataType::UserCache,
-                        &::APP_INFO,
-                        "cache",
-                    ).chain_err(|| ErrorKind::CachePathNotCreated)?
+                    let path = private_path::with_author_and_app(PROGRAM_NAME, PROGRAM_AUTHOR)
+                        .push("cache")
+                        .create()?
                         .join(format!("cache-{}.json", CACHE_VERSION));
 
                     fs::OpenOptions::new()
                         .read(true)
                         .write(true)
                         .create(true)
-                        .open(file)
+                        .open(path)
                         .chain_err(|| ErrorKind::CacheNotCreated)?
                 };
 
@@ -96,8 +93,7 @@ impl reservoir::Reservoir<tips::Tip> for Pond {
                     .chain_err(|| ErrorKind::CacheNotUpdated)?;
 
                 Ok(tip)
-            }
-            ReservoirMode::NoCache => fill_fn()?.pop().ok_or(Error::from(ErrorKind::NoTips)),
+            },
             ReservoirMode::EssentialCache => {
                 let tips: Vec<tips::Tip> = serde_json::from_str(ESSENTIAL_JSON)
                     .chain_err(|| ErrorKind::NoEssentialTips)?;

@@ -14,7 +14,6 @@ extern crate serde_derive;
 
 extern crate itertools;
 extern crate getopts;
-extern crate app_dirs;
 extern crate futures;
 extern crate hyper;
 extern crate hyper_tls;
@@ -30,15 +29,11 @@ mod pond;
 mod reservoir;
 mod speech;
 mod tips;
+mod private_path;
 
 use std::io::{self, Write};
 use getopts::Options;
 use std::env;
-
-const APP_INFO: app_dirs::AppInfo = app_dirs::AppInfo {
-    name: env!("CARGO_PKG_NAME"),
-    author: "FROG SYSTEMS",        // app_dirs will nest files under the folders {author}/{name}
-};
 
 enum Selection {
     Usage,
@@ -64,7 +59,7 @@ fn main() {
             } else if matches.opt_present("e") {
                 Selection::Say(pond::Pond::with_essential_tips())
             } else {
-                Selection::Say(pond::Pond::with_cache(true))
+                Selection::Say(pond::Pond::with_cache())
             }
         }
         Err(_) => Selection::Usage,
