@@ -11,12 +11,6 @@ main() {
         return
     fi
 
-    # Cross runs inside docker and $HOME should be set to the root of the docker
-    # container.
-    if [ $TRAVIS_OS_NAME = linux ]; then
-        export HOME=/
-    fi
-
     cross test --target $TARGET
     cross test --target $TARGET --release
 

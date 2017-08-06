@@ -1,6 +1,0 @@
-[target.x86_64-unknown-linux-gnu.env]
-[target.x86_64-unknown-linux-musl.env]
-passthrough = [
-    # Since Cross uses docker, $HOME needs to be set to a writeable location under the build directory
-    "HOME",
-]
