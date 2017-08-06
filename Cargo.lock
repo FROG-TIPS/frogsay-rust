@@ -1,6 +1,6 @@
 [root]
 name = "frogsay"
-version = "3.0.0-DEV"
+version = "3.0.0"
 dependencies = [
  "error-chain 0.10.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "futures 0.1.14 (registry+https://github.com/rust-lang/crates.io-index)",

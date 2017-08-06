@@ -1,6 +1,6 @@
 [package]
 name = "frogsay"
-version = "3.0.0-DEV"
+version = "3.0.0"
 authors = ["Charlie Liban <charlie@clib.ca>"]
 
 [dependencies]
