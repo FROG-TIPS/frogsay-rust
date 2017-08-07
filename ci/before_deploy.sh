@@ -25,6 +25,13 @@ main() {
     tar czf $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz *
     cd $src
 
+    if [ $TRAVIS_OS_NAME = linux ]; then
+      sudo apt-get -qq update
+      sudo apt-get install -y sha256sum
+    else
+      brew install sha256sum
+    fi
+
     # Print out the checksum for Homebrew
     sha256sum $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz
 
