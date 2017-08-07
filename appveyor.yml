@@ -56,7 +56,7 @@ deploy:
   # - Encrypt it. Go to https://ci.appveyor.com/tools/encrypt
   # - Paste the output down here
   auth_token:
-    secure: JqSXS7l92j8usJ9aCBLDBH0cnUZ2Q1K/O42MnYO5KZ+ql6kSRTtqmIlL2BGK405O
+    secure: 6ZxPqhBbHaJen/pcLN9JaVDaaeiCWBbqZlzcHAtEfvqSmDrWwxFU0kVt3x48DVSp
   description: ''
   on:
     RUST_VERSION: stable
@@ -70,7 +70,7 @@ cache:
 branches:
   only:
     # Release tags
-    - /^v\d+\.\d+\.\d+.*$/
+    - /^\d+\.\d+\.\d+.*$/
     - master
 
 notifications:
