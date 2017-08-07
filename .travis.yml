@@ -9,6 +9,11 @@ env:
   global:
     - CRATE_NAME=frogsay
 
+addons:
+  apt:
+    packages:
+    - sha256sum
+
 matrix:
   include:
     # Linux

@@ -25,6 +25,9 @@ main() {
     tar czf $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz *
     cd $src
 
+    # Print out the checksum for Homebrew
+    sha256sum $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz
+
     rm -rf $stage
 }
 
