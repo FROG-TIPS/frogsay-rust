@@ -8,7 +8,7 @@
     <title>frogsay (Install)</title>
     <authors>Charlie Liban</authors>
     <projectUrl>https://github.com/chrlie/frogsay-rust</projectUrl>
-    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/frogsay.png</iconUrl>-->
+    <iconUrl>https://cdn.rawgit.com/chrlie/frogsay-rust/9b663add/chocolately/icon.png</iconUrl>
     <licenseUrl>https://github.com/chrlie/frogsay-rust/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/chrlie/frogsay-rust</projectSourceUrl>
