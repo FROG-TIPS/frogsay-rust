@@ -11,10 +11,9 @@
     <iconUrl>https://cdn.rawgit.com/chrlie/frogsay-rust/9b663add/chocolately/icon.png</iconUrl>
     <licenseUrl>https://github.com/chrlie/frogsay-rust/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectSourceUrl>https://github.com/chrlie/frogsay-rust</projectSourceUrl>
     <tags>frogsay admin frog cli croak ribbit</tags>
     <summary>An ASCII FROG spouts wisdom on your command line</summary>
-    <description>
+    <description><![CDATA[
 ```
          FROGSAY IS A PROGRAM THAT GENERATES AN ASCII PICTURE OF A FROG
          SPOUTING A FROG TIP. FROG TIPS ARE FETCHED FROM
@@ -25,10 +24,15 @@
          /
    @..@
   (----)
- ( >__< )
+ ( )__( )
  ^^ ~~ ^^
 ```
-  </description>
+  ]]></description>
+  <releaseNotes>
+  ## 3.0.0
+  This is the initial release, superseding the original [frogsay](https://github.com/chrlie/frogsay).
+  - `--essential` allows for viewing of tips without a network connection
+  </releaseNotes>
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->
