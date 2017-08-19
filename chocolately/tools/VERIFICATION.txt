@@ -1,0 +1,8 @@
+VERIFICATION
+Verification is intended to assist the Chocolatey moderators and community
+in verifying that this package's contents are trustworthy.
+
+1. Go to the GitHub releases: https://github.com/chrlie/frogsay-rust/releases
+2. Find the release version you're verifying
+3. If you're installing the 32-bit program, verify that frogsay-$VERSION-i686-pc-windows-gnu.zip-$SHA256_HASH.sha256 matches
+4. If you're installing the 64-bit program, verify that frogsay-$VERSION-x86_64-pc-windows-gnu.zip-$SHA256_HASH.sha256 matches

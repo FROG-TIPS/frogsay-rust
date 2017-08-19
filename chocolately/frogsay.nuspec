@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>frogsay</id>
+    <version>3.0.0</version>
+    <packageSourceUrl>https://github.com/chrlie/frogsay-rust</packageSourceUrl>
+    <owners>Charlie Liban</owners>
+    <title>frogsay (Install)</title>
+    <authors>Charlie Liban</authors>
+    <projectUrl>https://github.com/chrlie/frogsay-rust</projectUrl>
+    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/frogsay.png</iconUrl>-->
+    <licenseUrl>https://github.com/chrlie/frogsay-rust/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/chrlie/frogsay-rust</projectSourceUrl>
+    <tags>frogsay admin frog cli croak ribbit</tags>
+    <summary>An ASCII FROG spouts wisdom on your command line</summary>
+    <description>
+```
+         FROGSAY IS A PROGRAM THAT GENERATES AN ASCII PICTURE OF A FROG
+         SPOUTING A FROG TIP. FROG TIPS ARE FETCHED FROM
+         HTTPS://FROG.TIPS'S API ENDPOINT.
+
+         OFFLINE OR "ESSENTIAL" FROG TIPS ARE ALSO PROVIDED, ALLOWING
+         FROGSAY TO FUNCTION WITHOUT A NETWORK CONNECTION.
+         /
+   @..@
+  (----)
+ ( &gt;__&lt; )
+ ^^ ~~ ^^
+```
+  </description>
+  </metadata>
+  <files>
+    <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" />
+    <!--Building from Linux? You may need this instead: <file src="tools/**" target="tools" />-->
+  </files>
+</package>
