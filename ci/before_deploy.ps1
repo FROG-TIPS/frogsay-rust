@@ -16,8 +16,9 @@ Copy-Item "$SRC_DIR\target\$($Env:TARGET)\release\frogsay.exe" '.\'
 
 Push-AppveyorArtifact "$ZIP"
 
-# Print out the checksum for Chocolatey
-Get-FileHash -Algorithm sha256 "$ZIP" | Select -ExpandProperty "Hash"
+# Write out the checksum for Chocolatey
+Get-FileHash -Algorithm sha256 "$ZIP" | Select -ExpandProperty "Hash" | Set-Variable -Name "HASH"
+$HASH | Set-Content "$ZIP-$HASH.sha256"
 
 Remove-Item *.* -Force
 Set-Location ..
