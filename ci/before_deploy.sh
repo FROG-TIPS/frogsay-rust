@@ -29,7 +29,7 @@ main() {
       sudo apt-get -qq update
       sudo apt-get install -y sha256sum
     else
-      brew install sha256sum
+      brew install sha2
     fi
 
     # Write out the checksum for Homebrew
