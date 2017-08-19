@@ -34,7 +34,7 @@ main() {
 
     # Write out the checksum for Homebrew
     HASH=$(sha256sum $src/$CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz)
-    echo "$HASH" > $CRATE_NAME-$TRAVIS_TAG-$ARGET.tar.gz-$HASH.sha256
+    echo "$HASH" > $CRATE_NAME-$TRAVIS_TAG-$TARGET.tar.gz-$HASH.sha256
 
     rm -rf $stage
 }
